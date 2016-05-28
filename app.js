@@ -11,8 +11,11 @@ var App = {
       App.settings.setBpm(event.target.value)
     })
     window.addEventListener("keydown", function(event) {
-      if (event.keyCode == 32) { App.ticker.toggle() }
-      // spacebar
+      if (event.keyCode == 32) {
+        // spacebar
+        App.ticker.toggle()
+        event.preventDefault()
+      }
     })
   },
 
