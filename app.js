@@ -6,24 +6,32 @@ var App = {
       urls: ["sounds/tick.mp3"],
       volume: App.settings.volume
     })
-    document.querySelector("#toggle").addEventListener("click", App.ticker.toggle)
-    document.querySelector("#bpm").addEventListener("change", function(event) {
-      App.settings.setBpm(event.target.value)
-    })
+    document.querySelector("#toggle").addEventListener("click", App.smartToggle)
     window.addEventListener("keydown", function(event) {
       if (event.keyCode == 32) {
         // spacebar
-        App.ticker.toggle()
         event.preventDefault()
+        App.smartToggle()
       }
     })
   },
 
+  smartToggle: function smartToggle() {
+    if (!App.settings.updateBpm(document.querySelector("#bpm").value)) {
+      // only toggle if tempo wasn't updated
+      App.ticker.toggle()
+    }
+  },
+  // TODO bug: if tempo was changed while stopped, smartToggle takes an extra toggle to start
+
   settings: {
-    setBpm: function setBpm(bpm) {
-      App.settings.bpm = (bpm > 0 && bpm < Infinity) ? Number(bpm) : 120
-      // makes sure bpm is valid
-      // can change max bpm here
+    updateBpm: function updateBpm(unsafeBpm) {
+      var lastBpm = App.settings.bpm
+      var bpm = (unsafeBpm > 0 && unsafeBpm < Infinity) ? Number(unsafeBpm) : lastBpm
+      // makes sure bpm is valid, limit is any positive number
+      App.settings.bpm = bpm
+      return (lastBpm != bpm)
+      // true if bpm was changed
     },
     bpm: 120,
     getBpmInMs: function() {
