@@ -25,10 +25,9 @@ body {
 
 #flash {
   fill: #fff;
-  stroke: #fff;
   stroke-width: 10;
 }
 
 #flash.active {
-  fill: #6e34eb;
+  stroke: #fff;
 }
