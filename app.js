@@ -25,9 +25,16 @@ var App = {
   },
 
   settings: {
-    updateBpm: function updateBpm(unsafeBpm) {
+    updateBpm: function updateBpm(uncheckedBpm) {
       var lastBpm = App.settings.bpm
-      var bpm = (unsafeBpm > 0 && unsafeBpm < Infinity) ? Number(unsafeBpm) : lastBpm
+      var bpm
+      if (uncheckedBpm === "") {
+        bpm = 120
+      } else if (uncheckedBpm > 0 && uncheckedBpm < Infinity) {
+        bpm = Number(uncheckedBpm)
+      } else {
+        bpm = lastBpm
+      }
       // makes sure bpm is valid, limit is any positive number
       App.settings.bpm = bpm
       console.log(lastBpm != bpm)
