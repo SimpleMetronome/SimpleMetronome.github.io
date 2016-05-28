@@ -4,3 +4,21 @@ body {
   color: #fff;
   font-family: sans-serif;
 }
+
+.app {
+  text-align: center;
+}
+
+.output {
+  margin: 2em;
+}
+
+#flash {
+  fill: #fff;
+  stroke: #fff;
+  stroke-width: 10;
+}
+
+#flash.active {
+  fill: #6e34eb;
+}
