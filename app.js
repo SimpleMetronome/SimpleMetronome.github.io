@@ -30,6 +30,7 @@ var App = {
       var bpm
       if (uncheckedBpm === "") {
         bpm = 120
+        // to match placeholder
       } else if (uncheckedBpm > 0 && uncheckedBpm < Infinity) {
         bpm = Number(uncheckedBpm)
       } else {
@@ -37,7 +38,6 @@ var App = {
       }
       // makes sure bpm is valid, limit is any positive number
       App.settings.bpm = bpm
-      console.log(lastBpm != bpm)
       return (lastBpm != bpm)
       // true if bpm was changed
     },
