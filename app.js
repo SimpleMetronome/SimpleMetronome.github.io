@@ -17,12 +17,12 @@ var App = {
   },
 
   smartToggle: function smartToggle() {
-    if (!App.settings.updateBpm(document.querySelector("#bpm").value)) {
+    if (!App.settings.updateBpm(document.querySelector("#bpm").value) || !App.ticker.active) {
       // only toggle if tempo wasn't updated
+      // however, if ticker is stopped, toggle regardless
       App.ticker.toggle()
     }
   },
-  // TODO bug: if tempo was changed while stopped, smartToggle takes an extra toggle to start
 
   settings: {
     updateBpm: function updateBpm(unsafeBpm) {
@@ -30,10 +30,12 @@ var App = {
       var bpm = (unsafeBpm > 0 && unsafeBpm < Infinity) ? Number(unsafeBpm) : lastBpm
       // makes sure bpm is valid, limit is any positive number
       App.settings.bpm = bpm
+      console.log(lastBpm != bpm)
       return (lastBpm != bpm)
       // true if bpm was changed
     },
     bpm: 120,
+    // TODO store bpm in localStorage
     getBpmInMs: function() {
       return 60 / App.settings.bpm * 1000
     },
