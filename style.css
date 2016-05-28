@@ -9,6 +9,16 @@ body {
   text-align: center;
 }
 
+#bpm {
+  font-size: 1em;
+  padding: .5em;
+}
+
+#toggle {
+  font-size: 1em;
+  padding: .64em;
+}
+
 .output {
   margin: 2em;
 }
