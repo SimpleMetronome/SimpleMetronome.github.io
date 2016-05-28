@@ -27,6 +27,7 @@ input#bpm {
   font-size: 1em;
   font-weight: bold;
   padding: 1em;
+  width: 5.25em;
 }
 
 button#toggle {
