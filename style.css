@@ -1,20 +1,22 @@
 
 body {
   background-color: #64ceaa;
-  color: #fff;
+  color: white;
   font-family: sans-serif;
 }
 
-.header, .app {
+.header, .app, #bpm {
   text-align: center;
 }
 
-#bpm {
+input#bpm {
   font-size: 1em;
+  font-weight: bold;
   padding: .5em;
 }
 
-#toggle {
+button#toggle {
+  background-color: white;
   font-size: 1em;
   padding: .64em;
 }
@@ -24,10 +26,10 @@ body {
 }
 
 #flash {
-  fill: #fff;
+  fill: white;
   stroke-width: 10;
 }
 
 #flash.active {
-  stroke: #fff;
+  stroke: white;
 }

@@ -10,6 +10,10 @@ var App = {
     document.querySelector("#bpm").addEventListener("change", function(event) {
       App.settings.setBpm(event.target.value)
     })
+    window.addEventListener("keydown", function(event) {
+      if (event.keyCode == 32) { App.ticker.toggle() }
+      // spacebar
+    })
   },
 
   settings: {
