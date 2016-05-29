@@ -14,6 +14,7 @@ var App = {
         App.smartToggle()
       }
     })
+    App.flasher.updateTiming()
   },
 
   smartToggle: function smartToggle() {
@@ -37,14 +38,25 @@ var App = {
         bpm = lastBpm
       }
       // makes sure bpm is valid, limit is any positive number
+      if (lastBpm != bpm) {
+        // if bpm was changed
+        App.settings.setBpm(bpm)
+        return true
+      } else {
+        return false
+      }
+    },
+    setBpm: function setBpm(bpm) {
       App.settings.bpm = bpm
-      return (lastBpm != bpm)
-      // true if bpm was changed
+      document.querySelector("#flash").style.transitionDuration = App.settings.getBpmInS() / 2
     },
     bpm: 120,
     // TODO store bpm in localStorage
     getBpmInMs: function() {
       return 60 / App.settings.bpm * 1000
+    },
+    getBpmInS: function() {
+      return 60 / App.settings.bpm
     },
     volume: 1
   },
@@ -60,6 +72,7 @@ var App = {
       App.ticker.active = false
       clearTimeout(App.ticker.cycleId)
       // canceling current cycle prevents multiple ticking from rapid start/stop (hopefully)
+      // TODO cancel CSS animation here
     },
     toggle: function toggle() {
       if (!App.ticker.active) {
@@ -98,7 +111,14 @@ var App = {
     flash: function flash() {
       App.flasher.flashOn()
       setTimeout(App.flasher.flashOff, App.settings.getBpmInMs() / 2)
+      // TODO change this timing to go with the CSS animation?
+    },
+    updateTiming: function updateTiming() {
+      var timing = (App.settings.getBpmInS() / 2) + "S"
+      document.querySelector("#flash").style.setProperty("transition", timing)
+      console.log(timing)
     }
+    // TODO can compress all these functions into flash() using CSS animations?
   }
 
 }
