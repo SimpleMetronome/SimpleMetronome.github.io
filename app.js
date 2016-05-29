@@ -16,6 +16,7 @@ var App = {
     })
     App.flasher.updateTiming()
     App.loadStorage()
+    // should bpm input always be saved to localStorage even if not set yet by spacebar?
   },
 
   smartToggle: function smartToggle() {
