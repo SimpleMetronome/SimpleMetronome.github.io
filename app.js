@@ -1,6 +1,4 @@
 
-alert('updating test')
-
 var App = {
 
   init: function init() {
