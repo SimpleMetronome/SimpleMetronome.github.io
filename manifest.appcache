@@ -1,6 +1,7 @@
 CACHE MANIFEST
-# UPDATED 1464509400
+# UPDATED 1464510603
 
+CACHE:
 app.js
 sounds/tick.mp3
 icon-solid.png
@@ -8,3 +9,6 @@ icon.png
 index.html
 manifest.json
 style.css
+
+NETWORK:
+*
