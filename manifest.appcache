@@ -1,9 +1,11 @@
 CACHE MANIFEST
-# UPDATED 1464510603
+# UPDATED 1464512806
 
 CACHE:
-app.js
+libs/fastclick.min.js
+libs/howler.min.js
 sounds/tick.mp3
+app.js
 icon-solid.png
 icon.png
 index.html
@@ -12,3 +14,5 @@ style.css
 
 NETWORK:
 *
+
+# TODO transition to service worker in the future
