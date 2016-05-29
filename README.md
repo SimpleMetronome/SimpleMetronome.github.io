@@ -2,6 +2,7 @@
 An open-source metronome that just works.
 
 - Made by [Jon](https://lasercar.github.io)
+- Sounds & Libraries: [CREDITS.md](https://github.com/simplemetronome/simplemetronome.github.io/blob/master/CREDITS.md)
 
 Features:
 - Uses CSS animation
@@ -10,5 +11,4 @@ Features:
 
 ___
 
-- [LICENSE.txt](https://github.com/simplemetronome/simplemetronome.github.io/blob/master/LICENSE.txt) (MIT License)
-- [CREDITS.md](https://github.com/simplemetronome/simplemetronome.github.io/blob/master/CREDITS.md) (Sounds, Libraries)
+- [MIT License](https://github.com/simplemetronome/simplemetronome.github.io/blob/master/LICENSE.txt)
