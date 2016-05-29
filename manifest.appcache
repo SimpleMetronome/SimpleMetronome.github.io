@@ -1,10 +1,10 @@
 CACHE MANIFEST
-# UPDATED 1464512806
+# UPDATED 1464513039
 
 CACHE:
-libs/fastclick.min.js
-libs/howler.min.js
-sounds/tick.mp3
+fastclick.min.js
+howler.min.js
+tick.mp3
 app.js
 icon-solid.png
 icon.png

@@ -3,7 +3,7 @@ var App = {
 
   init: function init() {
     App.sounder.howler = new Howl({
-      urls: ["sounds/tick.mp3"],
+      urls: ["tick.mp3"],
       volume: App.settings.volume
     })
     document.querySelector("#toggle").addEventListener("click", App.smartToggle)
