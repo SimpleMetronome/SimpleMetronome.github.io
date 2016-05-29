@@ -11,7 +11,7 @@ kbd {
   padding: 2px;
 }
 
-.header, .app, #bpm {
+.header, .app, .footer, #bpm {
   text-align: center;
 }
 
@@ -20,7 +20,8 @@ kbd {
 }
 
 .output {
-  margin: 2em;
+  margin-top: 1.6em;
+  margin-bottom: .8em;
 }
 
 #bpm {
