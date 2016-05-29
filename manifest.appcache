@@ -1,12 +1,10 @@
 CACHE MANIFEST
-# UPDATED 1464509208
+# UPDATED 1464509400
 
-index.html
-style.css
-https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js
-https://cdnjs.cloudflare.com/ajax/libs/howler/1.1.29/howler.min.js
-sounds/tick.mp3
 app.js
+sounds/tick.mp3
 icon-solid.png
 icon.png
+index.html
 manifest.json
+style.css
