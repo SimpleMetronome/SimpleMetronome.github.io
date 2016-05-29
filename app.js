@@ -48,7 +48,7 @@ var App = {
     },
     setBpm: function setBpm(bpm) {
       App.settings.bpm = bpm
-      document.querySelector("#flash").style.transitionDuration = App.settings.getBpmInS() / 2
+      App.flasher.updateTiming()
     },
     bpm: 120,
     // TODO store bpm in localStorage
@@ -116,7 +116,6 @@ var App = {
     updateTiming: function updateTiming() {
       var timing = (App.settings.getBpmInS() / 2) + "S"
       document.querySelector("#flash").style.setProperty("transition", timing)
-      console.log(timing)
     }
     // TODO can compress all these functions into flash() using CSS animations?
   }
