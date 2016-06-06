@@ -14,6 +14,8 @@ var App = {
         App.smartToggle()
       }
     })
+    document.querySelector("#flash").addEventListener("touchstart", App.detector.tap)
+    document.querySelector("#flash").addEventListener("mousedown", App.detector.tap)
     App.flasher.updateTiming()
     App.loadStorage()
     // should bpm input always be saved to localStorage even if not set yet by spacebar?
@@ -62,6 +64,19 @@ var App = {
       return 60 / App.settings.bpm
     },
     volume: 1
+  },
+
+  detector: {
+    taps: [],
+    tap: function tap(event) {
+      App.detector.taps.push(event.timeStamp)
+      last = App.detector.taps[App.detector.taps.length - 1]
+      nextToLast = App.detector.taps[App.detector.taps.length - 2]
+      difference = last - nextToLast
+      console.log(`last: ${last}`)
+      console.log(`nextToLast: ${nextToLast}`)
+      console.log(`difference: ${difference}`)
+    }
   },
 
   ticker: {
