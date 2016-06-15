@@ -29,6 +29,10 @@ var App = {
     }
   },
 
+  msToBpm: function(ms) {
+    return 60 * 1000 / ms
+  },
+
   settings: {
     updateBpm: function updateBpm(uncheckedBpm) {
       var lastBpm = App.settings.bpm
@@ -54,6 +58,7 @@ var App = {
       App.settings.bpm = bpm
       localStorage.bpm = bpm
       App.flasher.updateTiming()
+      // TODO FIXME: setting from detector using this function will not short circuit slow beats unless toggled off and on again
     },
     bpm: 120,
     // TODO store bpm in localStorage
@@ -67,15 +72,17 @@ var App = {
   },
 
   detector: {
-    taps: [],
+    lastTap: null,
     tap: function tap(event) {
-      App.detector.taps.push(event.timeStamp)
-      last = App.detector.taps[App.detector.taps.length - 1]
-      nextToLast = App.detector.taps[App.detector.taps.length - 2]
-      difference = last - nextToLast
-      console.log(`last: ${last}`)
-      console.log(`nextToLast: ${nextToLast}`)
-      console.log(`difference: ${difference}`)
+      currentTap = event.timeStamp
+      lastTap = App.detector.lastTap
+      if (lastTap != null) {
+        difference = currentTap - lastTap
+        bpm = Math.round(App.msToBpm(difference))
+        App.settings.setBpm(bpm)
+        App.loadInput()
+      }
+      App.detector.lastTap = currentTap
     }
   },
 
