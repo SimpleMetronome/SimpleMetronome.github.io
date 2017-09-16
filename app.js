@@ -116,8 +116,8 @@ setBPM(bpm)
 
 // logarithmic touch scrolling bpm
 
-var touchRatio = 3
-var touchAcceleration = 4
+var touchRatio = 1
+var touchAcceleration = 1
 
 var lastTouch
 window.addEventListener('touchstart', function(e) {
@@ -129,7 +129,7 @@ window.addEventListener('touchmove', function(e) {
   if (delta !== 0) {
     delta = delta / touchRatio
     var sign = Math.sign(delta)
-    var difference = sign * Math.pow(Math.abs(delta), 1.2)
+    var difference = sign * Math.pow(Math.abs(delta), touchAcceleration)
     if (sign === +1) {
       difference = Math.ceil(difference)
     } else if (sign === -1) {
