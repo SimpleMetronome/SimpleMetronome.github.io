@@ -23,7 +23,7 @@ window.addEventListener('resize', function() {
 // draw metronome dial
 
 // TODO remember with localstorage
-var bpm = 120
+var bpm = 3
 
 function tickScale() {
   return d3.scaleLinear()
@@ -47,7 +47,7 @@ face.selectAll('.tick')
     .attr('y1', dialRadius * 0.9)
     .attr('y2', dialRadius * 0.825)
     .attr('transform', function(d) {
-      return `rotate(${tickScale()(d)})`
+      return `rotate(${tickScale()(d) + 180})`
     })
 
 // draw bpm in center
@@ -75,3 +75,8 @@ face.append('line')
     .attr('x2', 0)
     .attr('y1', dialRadius * 0.2)
     .attr('y2', dialRadius * 0.9)
+    .attr('transform', function(d) {
+      // TODO dynamic data
+      var d = 0
+      return `rotate(${tickScale()(d) + 180})`
+    })
