@@ -141,3 +141,13 @@ window.addEventListener('wheel', function(e) {
   }
   setBPM(bpm + difference)
 })
+
+// arrow key bpm
+
+window.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowUp' || e.key === 'ArrowRight') {
+    setBPM(bpm + 1)
+  } else if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') {
+    setBPM(bpm - 1)
+  }
+})
