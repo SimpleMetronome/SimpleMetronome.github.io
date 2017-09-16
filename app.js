@@ -49,7 +49,43 @@ function tickScale() {
     .domain([0, bpm - 1])
 }
 
+// tick manager
+
+function tick() {
+  // TODO play sound
+
+  // animate pointer
+  updatePointer()
+}
+
+var tickActive = false
+var tickID
+function stopTick() {
+  tickActive = false
+  clearInterval(tickID)
+}
+function startTick() {
+  stopTick()
+  tickActive = true
+  tick() // if you don't want the instant clicking when changing tempo then remove this line
+  tickID = setInterval(tick, 60 / bpm * 1000)
+}
+function updateTick() {
+  if (tickActive) {
+    startTick()
+  }
+  updatePointer()
+}
+function toggleTick() {
+  if (tickActive) {
+    stopTick()
+  } else {
+    startTick()
+  }
+}
+
 function setBPM(targetBPM) {
+  // verifier
   targetBPM = Math.round(targetBPM)
   if (targetBPM < 1) {
     bpm = 1
@@ -60,12 +96,15 @@ function setBPM(targetBPM) {
   }
   localStorage.bpm = bpm
 
-  var tick = face.selectAll('.tick')
+  updateTick()
+
+  // redraw ticks
+  var ticks = face.selectAll('.tick')
     .data(d3.range(0, bpm))
 
-  tick.exit().remove()
+  ticks.exit().remove()
 
-  tick.enter()
+  ticks.enter()
     .append('line')
     .attr('class', 'tick')
     .style('stroke-width', windowMin / 350)
@@ -77,7 +116,7 @@ function setBPM(targetBPM) {
       return `rotate(${tickScale()(d) + 180})`
     })
 
-  tick.attr('transform', function(d) {
+  ticks.attr('transform', function(d) {
     return `rotate(${tickScale()(d) + 180})`
   })
 
@@ -107,10 +146,25 @@ face.append('line')
   .attr('y1', dialRadius * 0.2)
   .attr('y2', dialRadius * 0.9)
   .attr('transform', function(d) {
-    // TODO dynamic data (pointer angle)
     var d = 0
     return `rotate(${tickScale()(d) + 180})`
   })
+
+var pointer = d3.selectAll('.pointer')
+
+var pointerPos = 0
+function updatePointer() {
+  if (pointerPos >= bpm) {
+    pointerPos = 0
+  }
+  pointer.data([pointerPos])
+  .transition()
+  .attr('transform', function(d) {
+    // dynamic pointer angle
+    return `rotate(${tickScale()(d) + 180})`
+  })
+  pointerPos ++
+}
 
 // TODO duplicate pt. 2
 setBPM(bpm)
@@ -153,12 +207,14 @@ window.addEventListener('wheel', function(e) {
   setBPM(bpm + difference)
 })
 
-// arrow key bpm
+// keyboard events
 
 window.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowUp' || e.key === 'ArrowRight') {
     setBPM(bpm + 1)
   } else if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') {
     setBPM(bpm - 1)
+  } else if (e.key === ' ') {
+    toggleTick()
   }
 })
