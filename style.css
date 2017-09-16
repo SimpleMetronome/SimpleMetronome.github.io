@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  font-family: sans-serif;
 }
 #metronome {
   position: fixed;
@@ -9,4 +10,14 @@ body {
 .tick {
   stroke-width: 3;
   stroke: #000;
+}
+.bpm-circle {
+  stroke-width: 4;
+  stroke: #000;
+  fill: transparent;
+}
+.bpm-text {
+  text-anchor: middle;
+  font-family: monospace;
+  alignment-baseline: central;
 }

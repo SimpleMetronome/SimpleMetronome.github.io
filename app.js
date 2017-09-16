@@ -20,7 +20,7 @@ window.addEventListener('resize', function() {
   location.reload()
 })
 
-// draw metronome
+// draw metronome dial
 
 // TODO remember with localstorage
 var bpm = 120
@@ -48,3 +48,19 @@ face.selectAll('.tick')
     .attr('transform', function(d) {
       return `rotate(${tickScale()(d)})`
     })
+
+// draw bpm in center
+
+face.append('circle')
+    .attr('class', 'bpm-circle')
+    .attr('r', dialRadius * 0.2)
+
+face.append('text')
+    .attr('class', 'bpm-text')
+    .attr('x', 0)
+    .attr('y', 0)
+    .style('font-size', `${containerSize / 10}px`)
+
+// TODO make bpm updatable
+face.select('.bpm-text')
+      .text(bpm)
