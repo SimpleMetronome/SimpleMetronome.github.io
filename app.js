@@ -31,13 +31,11 @@ function tickScale() {
     .domain([0, bpm - 1])
 }
 
-function dialRadius() {
-  return containerSize / 2
-}
+var dialRadius = containerSize / 2
 
 var face = metronome.append('g')
   .attr('id', 'face')
-  .attr('transform', `translate(${dialRadius()}, ${dialRadius()})`)
+  .attr('transform', `translate(${dialRadius}, ${dialRadius})`)
 
 face.selectAll('.tick')
   .data(d3.range(0, bpm)).enter()
@@ -45,8 +43,8 @@ face.selectAll('.tick')
     .attr('class', 'tick')
     .attr('x1', 0)
     .attr('x2', 0)
-    .attr('y1', dialRadius() * 0.9)
-    .attr('y2', dialRadius() * 0.825)
+    .attr('y1', dialRadius * 0.9)
+    .attr('y2', dialRadius * 0.825)
     .attr('transform', function(d) {
       return `rotate(${tickScale()(d)})`
     })
