@@ -5,7 +5,7 @@
 // page setup
 
 var metronome = d3.select('body').append('svg')
-  .attr('id', 'metronome')
+  .attr('class', 'metronome')
 
 var containerSize = Math.min(window.innerWidth, window.innerHeight)
 metronome.attr('width', containerSize)
