@@ -8,10 +8,10 @@ var metronome = d3.select('body').append('svg')
   .attr('class', 'metronome')
 
 var containerSize = Math.min(window.innerWidth, window.innerHeight)
-metronome.attr('width', containerSize)
-  .attr('height', containerSize)
-  .style('top', (window.innerHeight - containerSize) / 2 )
-  .style('left', (window.innerWidth - containerSize) / 2 )
+metronome.attr('width', window.innerWidth)
+  .attr('height', window.innerHeight)
+  .style('top', 0)
+  .style('left', 0)
 
 window.addEventListener('touchmove', function(e) {
   e.preventDefault()
@@ -29,7 +29,7 @@ var dialRadius = containerSize / 2
 
 var face = metronome.append('g')
   .attr('id', 'face')
-  .attr('transform', `translate(${dialRadius}, ${dialRadius})`)
+  .attr('transform', `translate(${dialRadius + (window.innerWidth - containerSize) / 2}, ${dialRadius + (window.innerHeight - containerSize) / 2})`)
 
 // remember and initialize bpm with localstorage
 
