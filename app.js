@@ -1,4 +1,6 @@
-// this was helpful in understanding how to draw clock-like objects http://bl.ocks.org/tomgp/6475678
+// these examples were helpful in understanding the techniques used in this project
+// http://bl.ocks.org/tomgp/6475678
+// http://bl.ocks.org/alansmithy/e984477a741bc56db5a5
 
 // page setup
 
@@ -7,9 +9,9 @@ var metronome = d3.select('body').append('svg')
 
 var containerSize = Math.min(window.innerWidth, window.innerHeight)
 metronome.attr('width', containerSize)
-         .attr('height', containerSize)
-         .style('top', (window.innerHeight - containerSize) / 2 )
-         .style('left', (window.innerWidth - containerSize) / 2 )
+  .attr('height', containerSize)
+  .style('top', (window.innerHeight - containerSize) / 2 )
+  .style('left', (window.innerWidth - containerSize) / 2 )
 
 window.addEventListener('touchmove', function(event) {
   event.preventDefault()
@@ -22,7 +24,15 @@ window.addEventListener('resize', function() {
 
 // draw metronome dial
 
-// TODO remember and initialize with localstorage
+
+
+var dialRadius = containerSize / 2
+
+var face = metronome.append('g')
+  .attr('id', 'face')
+  .attr('transform', `translate(${dialRadius}, ${dialRadius})`)
+
+// TODO remember and initialize bpm with localstorage
 var bpm = 120
 
 function tickScale() {
@@ -31,14 +41,15 @@ function tickScale() {
     .domain([0, bpm - 1])
 }
 
-var dialRadius = containerSize / 2
+function setBPM(targetBPM) {
+  bpm = targetBPM
 
-var face = metronome.append('g')
-  .attr('id', 'face')
-  .attr('transform', `translate(${dialRadius}, ${dialRadius})`)
+  var tick = face.selectAll('.tick')
+    .data(d3.range(0, bpm))
 
-face.selectAll('.tick')
-  .data(d3.range(0, bpm)).enter()
+  tick.exit().remove()
+
+  tick.enter()
     .append('line')
     .attr('class', 'tick')
     .style('stroke-width', containerSize / 350)
@@ -50,33 +61,40 @@ face.selectAll('.tick')
       return `rotate(${tickScale()(d) + 180})`
     })
 
+  tick.transition()
+    .attr('transform', function(d) {
+      return `rotate(${tickScale()(d) + 180})`
+    })
+
+  face.select('.bpm-text')
+    .text(bpm)
+}
+
 // draw bpm in center
 
 face.append('circle')
-    .attr('class', 'bpm-circle')
-    .attr('r', dialRadius * 0.2)
+  .attr('class', 'bpm-circle')
+  .attr('r', dialRadius * 0.2)
 
 face.append('text')
-    .attr('class', 'bpm-text')
-    .attr('x', 0)
-    .attr('y', 0)
-    .style('font-size', containerSize / 10)
-
-// TODO make bpm updatable
-face.select('.bpm-text')
-    .text(bpm)
+  .attr('class', 'bpm-text')
+  .attr('x', 0)
+  .attr('y', 0)
+  .style('font-size', containerSize / 10)
 
 // draw pointer
 
 face.append('line')
-    .attr('class', 'pointer')
-    .style('stroke-width', containerSize / 150)
-    .attr('x1', 0)
-    .attr('x2', 0)
-    .attr('y1', dialRadius * 0.2)
-    .attr('y2', dialRadius * 0.9)
-    .attr('transform', function(d) {
-      // TODO dynamic data
-      var d = 0
-      return `rotate(${tickScale()(d) + 180})`
-    })
+  .attr('class', 'pointer')
+  .style('stroke-width', containerSize / 150)
+  .attr('x1', 0)
+  .attr('x2', 0)
+  .attr('y1', dialRadius * 0.2)
+  .attr('y2', dialRadius * 0.9)
+  .attr('transform', function(d) {
+    // TODO dynamic data (pointer angle)
+    var d = 0
+    return `rotate(${tickScale()(d) + 180})`
+  })
+
+setBPM(120)
