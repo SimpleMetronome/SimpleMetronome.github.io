@@ -7,15 +7,15 @@ var metronome = d3.select('body').append('svg')
 
 var containerSize = Math.min(window.innerWidth, window.innerHeight)
 metronome.attr('width', containerSize)
-                    .attr('height', containerSize)
-                    .style('top', (window.innerHeight - containerSize) / 2 )
-                    .style('left', (window.innerWidth - containerSize) / 2 )
+         .attr('height', containerSize)
+         .style('top', (window.innerHeight - containerSize) / 2 )
+         .style('left', (window.innerWidth - containerSize) / 2 )
 
 window.addEventListener('touchmove', function(event) {
   event.preventDefault()
 })
 
-// TODO resize stuff page size changes, for now refresh the whole page
+// refreshe the whole page when it resizes
 window.addEventListener('resize', function() {
   location.reload()
 })
