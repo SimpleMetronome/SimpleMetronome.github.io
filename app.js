@@ -114,25 +114,33 @@ face.append('line')
 // TODO duplicate pt. 2
 setBPM(bpm)
 
-// touch bpm scrolling
+// logarithmic touch scrolling bpm
 
-var touchRatio = 2
+var touchRatio = 3
+var touchAcceleration = 4
 
 var lastTouch
 window.addEventListener('touchstart', function(e) {
-  var touch = e.touches[0]
-  lastTouch = touch
-  var difference = (lastTouch.clientY - touch.clientY) / touchRatio
-  setBPM(bpm + difference)
+  lastTouch = e.touches[0]
 })
 window.addEventListener('touchmove', function(e) {
   var touch = e.touches[0]
-  var difference = (lastTouch.clientY - touch.clientY) / touchRatio
-  setBPM(bpm + difference)
-  lastTouch = touch
+  var delta = (lastTouch.clientY - touch.clientY)
+  if (delta !== 0) {
+    delta = delta / touchRatio
+    var sign = Math.sign(delta)
+    var difference = sign * Math.pow(Math.abs(delta), 1.2)
+    if (sign === +1) {
+      difference = Math.ceil(difference)
+    } else if (sign === -1) {
+      difference = Math.floor(difference)
+    }
+    setBPM(bpm + difference)
+    lastTouch = touch
+  }
 })
 
-// mouse wheel bpm scrolling
+// mouse wheel scrolling bpm
 
 window.addEventListener('wheel', function(e) {
   var difference
