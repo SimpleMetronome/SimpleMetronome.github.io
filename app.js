@@ -41,7 +41,7 @@ face.selectAll('.tick')
   .data(d3.range(0, bpm)).enter()
     .append('line')
     .attr('class', 'tick')
-    .style('stroke-width', `${containerSize / 600}px`)
+    .style('stroke-width', `${containerSize / 350}px`)
     .attr('x1', 0)
     .attr('x2', 0)
     .attr('y1', dialRadius * 0.9)
@@ -55,7 +55,7 @@ face.selectAll('.tick')
 face.append('circle')
     .attr('class', 'bpm-circle')
     .attr('r', dialRadius * 0.2)
-    .style('stroke-width', `${containerSize / 200}px`)
+    .style('stroke-width', `${containerSize / 150}px`)
 
 face.append('text')
     .attr('class', 'bpm-text')
@@ -65,4 +65,14 @@ face.append('text')
 
 // TODO make bpm updatable
 face.select('.bpm-text')
-      .text(bpm)
+    .text(bpm)
+
+// draw pointer
+
+face.append('line')
+    .attr('class', 'pointer')
+    .style('stroke-width', `${containerSize / 150}px`)
+    .attr('x1', 0)
+    .attr('x2', 0)
+    .attr('y1', dialRadius * 0.2)
+    .attr('y2', dialRadius * 0.9)

@@ -19,3 +19,7 @@ body {
   font-family: monospace;
   alignment-baseline: central;
 }
+.pointer {
+  stroke: #000;
+  stroke-linecap: round;
+}
