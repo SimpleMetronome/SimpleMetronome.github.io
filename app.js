@@ -54,6 +54,7 @@ face.selectAll('.tick')
 face.append('circle')
     .attr('class', 'bpm-circle')
     .attr('r', dialRadius * 0.2)
+    .style('stroke-width', `${containerSize / 200}px`)
 
 face.append('text')
     .attr('class', 'bpm-text')
