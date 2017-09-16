@@ -5,4 +5,5 @@ body {
 }
 #metronome {
   background: #eee;
+  position: fixed;
 }
