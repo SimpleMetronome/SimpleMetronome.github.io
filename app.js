@@ -235,3 +235,8 @@ window.addEventListener('keydown', function(e) {
     toggleTick()
   }
 })
+
+// sync multiple browser window instances
+
+window.addEventListener('storage', restartTick)
+// TODO sync start/stopped state
