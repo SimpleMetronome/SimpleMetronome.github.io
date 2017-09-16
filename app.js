@@ -40,6 +40,7 @@ function tickScale() {
 }
 
 function setBPM(targetBPM) {
+  targetBPM = Math.round(targetBPM)
   if (targetBPM < 1) {
     bpm = 1
   } else if (targetBPM > 360) {
@@ -103,12 +104,15 @@ face.append('line')
 
 setBPM(120)
 
-var lastTouch
+var lastTouch = null
 // TODO match the touch control to the dial
+window.addEventListener('touchstart', function() {
+  lastTouch = null
+})
 window.addEventListener('touchmove', function(e) {
   var touch = e.touches[0]
   if (lastTouch) {
-    var difference = lastTouch.clientY - touch.clientY
+    var difference = (lastTouch.clientY - touch.clientY) / 2
     setBPM(bpm + difference)
   }
   lastTouch = touch
