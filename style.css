@@ -4,6 +4,9 @@ body {
   overflow: hidden;
 }
 #metronome {
-  background: #eee;
   position: fixed;
+}
+.tick {
+  stroke-width: 3;
+  stroke: #000;
 }
