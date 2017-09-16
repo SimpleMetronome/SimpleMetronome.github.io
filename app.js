@@ -7,7 +7,7 @@
 var metronome = d3.select('body').append('svg')
   .attr('class', 'metronome')
 
-var containerSize = Math.min(window.innerWidth, window.innerHeight)
+var windowMin = Math.min(window.innerWidth, window.innerHeight)
 metronome.attr('width', window.innerWidth)
   .attr('height', window.innerHeight)
   .style('top', 0)
@@ -19,17 +19,18 @@ window.addEventListener('touchmove', function(e) {
 
 // refresh the whole page when window resizes
 
+// TODO dynamically resize without having to refresh page
 window.addEventListener('resize', function() {
   location.reload()
 })
 
 // draw metronome dial
 
-var dialRadius = containerSize / 2
+var dialRadius = windowMin / 2
 
 var face = metronome.append('g')
   .attr('id', 'face')
-  .attr('transform', `translate(${dialRadius + (window.innerWidth - containerSize) / 2}, ${dialRadius + (window.innerHeight - containerSize) / 2})`)
+  .attr('transform', `translate(${dialRadius + (window.innerWidth - windowMin) / 2}, ${dialRadius + (window.innerHeight - windowMin) / 2})`)
 
 // remember and initialize bpm with localstorage
 
@@ -67,7 +68,7 @@ function setBPM(targetBPM) {
   tick.enter()
     .append('line')
     .attr('class', 'tick')
-    .style('stroke-width', containerSize / 350)
+    .style('stroke-width', windowMin / 350)
     .attr('x1', 0)
     .attr('x2', 0)
     .attr('y1', dialRadius * 0.9)
@@ -94,13 +95,13 @@ face.append('text')
   .attr('class', 'bpm-text')
   .attr('x', 0)
   .attr('y', 0)
-  .style('font-size', containerSize / 10)
+  .style('font-size', windowMin / 10)
 
 // draw pointer
 
 face.append('line')
   .attr('class', 'pointer')
-  .style('stroke-width', containerSize / 150)
+  .style('stroke-width', windowMin / 150)
   .attr('x1', 0)
   .attr('x2', 0)
   .attr('y1', dialRadius * 0.2)
