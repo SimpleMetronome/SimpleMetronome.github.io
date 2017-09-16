@@ -17,7 +17,8 @@ window.addEventListener('touchmove', function(e) {
   e.preventDefault()
 })
 
-// refreshe the whole page when it resizes
+// refresh the whole page when window resizes
+
 window.addEventListener('resize', function() {
   location.reload()
 })
@@ -30,8 +31,16 @@ var face = metronome.append('g')
   .attr('id', 'face')
   .attr('transform', `translate(${dialRadius}, ${dialRadius})`)
 
-// TODO remember and initialize bpm with localstorage
-var bpm = 120
+// remember and initialize bpm with localstorage
+
+// TODO duplicate pt. 1
+var bpm
+if (!localStorage.bpm) {
+  bpm = 120
+  localStorage.bpm = 120
+} else {
+  bpm = localStorage.bpm
+}
 
 function tickScale() {
   return d3.scaleLinear()
@@ -48,6 +57,7 @@ function setBPM(targetBPM) {
   } else {
     bpm = targetBPM
   }
+  localStorage.bpm = bpm
 
   var tick = face.selectAll('.tick')
     .data(d3.range(0, bpm))
@@ -102,7 +112,8 @@ face.append('line')
     return `rotate(${tickScale()(d) + 180})`
   })
 
-setBPM(120)
+// TODO duplicate pt. 2
+setBPM(bpm)
 
 // touch bpm scrolling
 
