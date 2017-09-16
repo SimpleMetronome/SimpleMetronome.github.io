@@ -2,8 +2,6 @@
 
 // page setup
 
-// TODO resize stuff page size changes, for now manually refresh
-
 var metronome = d3.select('body').append('svg')
   .attr('id', 'metronome')
 
@@ -15,6 +13,11 @@ metronome.attr('width', containerSize)
 
 window.addEventListener('touchmove', function(event) {
   event.preventDefault()
+})
+
+// TODO resize stuff page size changes, for now refresh the whole page
+window.addEventListener('resize', function() {
+  location.reload()
 })
 
 // draw metronome
