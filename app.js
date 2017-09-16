@@ -116,16 +116,18 @@ setBPM(bpm)
 
 // touch bpm scrolling
 
+var touchRatio = 2
+
 var lastTouch
 window.addEventListener('touchstart', function(e) {
   var touch = e.touches[0]
   lastTouch = touch
-  var difference = (lastTouch.clientY - touch.clientY)
+  var difference = (lastTouch.clientY - touch.clientY) / touchRatio
   setBPM(bpm + difference)
 })
 window.addEventListener('touchmove', function(e) {
   var touch = e.touches[0]
-  var difference = (lastTouch.clientY - touch.clientY) / 3
+  var difference = (lastTouch.clientY - touch.clientY) / touchRatio
   setBPM(bpm + difference)
   lastTouch = touch
 })
