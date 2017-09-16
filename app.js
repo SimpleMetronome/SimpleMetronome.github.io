@@ -13,8 +13,8 @@ metronome.attr('width', containerSize)
   .style('top', (window.innerHeight - containerSize) / 2 )
   .style('left', (window.innerWidth - containerSize) / 2 )
 
-window.addEventListener('touchmove', function(event) {
-  event.preventDefault()
+window.addEventListener('touchmove', function(e) {
+  e.preventDefault()
 })
 
 // refreshe the whole page when it resizes
@@ -23,8 +23,6 @@ window.addEventListener('resize', function() {
 })
 
 // draw metronome dial
-
-
 
 var dialRadius = containerSize / 2
 
@@ -42,7 +40,13 @@ function tickScale() {
 }
 
 function setBPM(targetBPM) {
-  bpm = targetBPM
+  if (targetBPM < 1) {
+    bpm = 1
+  } else if (targetBPM > 360) {
+    bpm = 360
+  } else {
+    bpm = targetBPM
+  }
 
   var tick = face.selectAll('.tick')
     .data(d3.range(0, bpm))
@@ -98,3 +102,14 @@ face.append('line')
   })
 
 setBPM(120)
+
+var lastTouch
+// TODO match the touch control to the dial
+window.addEventListener('touchmove', function(e) {
+  var touch = e.touches[0]
+  if (lastTouch) {
+    var difference = lastTouch.clientY - touch.clientY
+    setBPM(bpm + difference)
+  }
+  lastTouch = touch
+})
