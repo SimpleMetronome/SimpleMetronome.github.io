@@ -51,9 +51,13 @@ function tickScale() {
 
 // tick manager
 
+var sound = new Howl({
+  src: ['tick.mp3']
+})
+
 function tick() {
   // TODO play sound
-
+  sound.play()
   // animate pointer
   updatePointer()
 }
@@ -64,16 +68,20 @@ function stopTick() {
   tickActive = false
   clearInterval(tickID)
 }
-function startTick() {
+function restartTick() {
   stopTick()
   tickActive = true
-  tick() // if you don't want the instant clicking when changing tempo then remove this line
   tickID = setInterval(tick, 60 / bpm * 1000)
+}
+function startTick() {
+  restartTick()
+  tick()
 }
 function updateTick() {
   if (tickActive) {
-    startTick()
+    restartTick()
   }
+  pointerPos = 0
   updatePointer()
 }
 function toggleTick() {
