@@ -14,7 +14,7 @@ body {
   fill: #000;
 }
 .bpm-text {
-  stroke: #fff;
+  fill: #fff;
   text-anchor: middle;
   font-family: monospace;
   alignment-baseline: central;

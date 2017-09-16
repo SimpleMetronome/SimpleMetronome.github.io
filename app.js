@@ -22,8 +22,8 @@ window.addEventListener('resize', function() {
 
 // draw metronome dial
 
-// TODO remember with localstorage
-var bpm = 3
+// TODO remember and initialize with localstorage
+var bpm = 120
 
 function tickScale() {
   return d3.scaleLinear()
