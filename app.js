@@ -107,6 +107,7 @@ function setBPM(targetBPM) {
   localStorage.bpm = bpm
 
   updateTick()
+  // TODO more subtle scrolling sound?
 
   // redraw ticks
   var ticks = face.selectAll('.tick')
@@ -186,6 +187,7 @@ setBPM(bpm)
 
 // logarithmic touch scrolling bpm
 
+// TODO better acceleration and slower-than-event-unit scrolling
 var touchRatio = 1
 var touchAcceleration = 1
 
