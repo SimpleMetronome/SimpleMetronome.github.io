@@ -104,8 +104,9 @@ face.append('line')
 
 setBPM(120)
 
+// touch bpm scrolling
+
 var lastTouch = null
-// TODO match the touch control to the dial
 window.addEventListener('touchstart', function() {
   lastTouch = null
 })
@@ -116,4 +117,16 @@ window.addEventListener('touchmove', function(e) {
     setBPM(bpm + difference)
   }
   lastTouch = touch
+})
+
+// mouse wheel bpm scrolling
+
+window.addEventListener('wheel', function(e) {
+  var difference
+  if (e.deltaY > 0) {
+    difference = -1
+  } else {
+    difference = 1
+  }
+  setBPM(bpm + difference)
 })
