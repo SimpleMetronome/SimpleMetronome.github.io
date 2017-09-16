@@ -66,6 +66,8 @@ var tickActive = false
 var tickID
 function stopTick() {
   tickActive = false
+  resetPointer()
+  updatePointer()
   clearInterval(tickID)
 }
 function restartTick() {
@@ -81,7 +83,7 @@ function updateTick() {
   if (tickActive) {
     restartTick()
   }
-  pointerPos = 0
+  resetPointer()
   updatePointer()
 }
 function toggleTick() {
@@ -161,9 +163,14 @@ face.append('line')
 var pointer = d3.selectAll('.pointer')
 
 var pointerPos = 0
+
+function resetPointer() {
+  pointerPos = 0
+}
+
 function updatePointer() {
   if (pointerPos >= bpm) {
-    pointerPos = 0
+    resetPointer()
   }
   pointer.data([pointerPos])
   .transition()
