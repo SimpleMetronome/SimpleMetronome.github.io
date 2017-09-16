@@ -42,8 +42,8 @@ face.selectAll('.tick')
     .attr('class', 'tick')
     .attr('x1', 0)
     .attr('x2', 0)
-    .attr('y1', dialRadius() * 0.95)
-    .attr('y2', dialRadius() * 0.9)
+    .attr('y1', dialRadius() * 0.9)
+    .attr('y2', dialRadius() * 0.825)
     .attr('transform', function(d) {
       return `rotate(${tickScale()(d)})`
     })
