@@ -76,10 +76,9 @@ function setBPM(targetBPM) {
       return `rotate(${tickScale()(d) + 180})`
     })
 
-  tick.transition()
-    .attr('transform', function(d) {
-      return `rotate(${tickScale()(d) + 180})`
-    })
+  tick.attr('transform', function(d) {
+    return `rotate(${tickScale()(d) + 180})`
+  })
 
   face.select('.bpm-text')
     .text(bpm)
