@@ -68,6 +68,9 @@ function updateTick() {
     clearInterval(tickID)
     resetPointer()
     updatePointer()
+    pointerPos = bpm - 1
+    updatePointer()
+    setTimeout(updatePointer, 50)
     tickID = setInterval(tick, 60 / bpm * 1000)
   } else {
     clearInterval(tickID)
@@ -82,6 +85,7 @@ function toggleTick() {
     updateTick()
   } else {
     localStorage.tickActive = true
+    tickSound.play()
     updateTick()
   }
 }
