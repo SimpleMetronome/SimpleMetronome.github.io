@@ -3,23 +3,24 @@ body {
   padding: 0;
   overflow: hidden;
   font-family: sans-serif;
+  background: #000;
 }
 .metronome {
   position: fixed;
 }
 .tick {
-  stroke: #000;
+  stroke: #fff;
 }
 .bpm-circle {
-  fill: #000;
+  fill: #fff;
 }
 .bpm-text {
-  fill: #fff;
+  fill: #000;
   text-anchor: middle;
   font-family: monospace;
   alignment-baseline: central;
 }
 .pointer {
-  stroke: #000;
+  stroke: #fff;
   stroke-linecap: round;
 }
