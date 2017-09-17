@@ -55,44 +55,34 @@ var tickSound = new Howl({
   src: ['tick.mp3']
 })
 
-function playTick() {
-  tickSound.play()
-}
-
 function tick() {
-  playTick()
+  tickSound.play()
   updatePointer()
 }
 
-var tickActive = false
+localStorage.tickActive = false
+
 var tickID
-function stopTick() {
-  tickActive = false
-  resetPointer()
-  updatePointer()
-  clearInterval(tickID)
-}
-function restartTick() {
-  stopTick()
-  tickActive = true
-  tickID = setInterval(tick, 60 / bpm * 1000)
-}
-function startTick() {
-  restartTick()
-  tick()
-}
 function updateTick() {
-  if (tickActive) {
-    restartTick()
-  }
-  resetPointer()
-  updatePointer()
-}
-function toggleTick() {
-  if (tickActive) {
-    stopTick()
+  if (localStorage.tickActive == 'true') {
+    clearInterval(tickID)
+    resetPointer()
+    updatePointer()
+    tickID = setInterval(tick, 60 / bpm * 1000)
   } else {
-    startTick()
+    clearInterval(tickID)
+    resetPointer()
+    updatePointer()
+  }
+}
+
+function toggleTick() {
+  if (localStorage.tickActive == 'true') {
+    localStorage.tickActive = false
+    updateTick()
+  } else {
+    localStorage.tickActive = true
+    updateTick()
   }
 }
 
@@ -238,7 +228,6 @@ window.addEventListener('keydown', function(e) {
   }
 })
 
-// sync multiple browser window instances
+// sync controls accross multiple windows
 
-window.addEventListener('storage', restartTick)
-// TODO sync start/stopped state
+window.addEventListener('storage', updateTick)
