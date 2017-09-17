@@ -167,7 +167,7 @@ function updatePointer() {
     resetPointer()
   }
   pointer.data([pointerPos])
-  .transition()
+  .transition().duration(50)
   .attr('transform', function(d) {
     // dynamic pointer angle
     return `rotate(${tickScale()(d) + 180})`
