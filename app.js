@@ -68,6 +68,7 @@ function updateTick() {
     clearInterval(tickID)
     resetPointer()
     updatePointer()
+    tick()
     tickID = setInterval(tick, 60 / bpm * 1000)
   } else {
     clearInterval(tickID)
