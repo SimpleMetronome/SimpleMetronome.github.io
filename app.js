@@ -60,8 +60,8 @@ function playTick() {
 }
 
 function tick() {
-  // animate pointer
-  updatePointer().on('end', playTick)
+  playTick()
+  updatePointer()
 }
 
 var tickActive = false
@@ -175,14 +175,13 @@ function updatePointer() {
   if (pointerPos >= bpm) {
     resetPointer()
   }
-  var r = pointer.data([pointerPos])
+  pointer.data([pointerPos])
   .transition()
   .attr('transform', function(d) {
     // dynamic pointer angle
     return `rotate(${tickScale()(d) + 180})`
   })
   pointerPos ++
-  return r
 }
 
 // TODO duplicate pt. 2
