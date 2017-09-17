@@ -51,15 +51,17 @@ function tickScale() {
 
 // tick manager
 
-var sound = new Howl({
+var tickSound = new Howl({
   src: ['tick.mp3']
 })
 
+function playTick() {
+  tickSound.play()
+}
+
 function tick() {
-  // TODO play sound
-  sound.play()
   // animate pointer
-  updatePointer()
+  updatePointer().on('end', playTick)
 }
 
 var tickActive = false
@@ -173,13 +175,14 @@ function updatePointer() {
   if (pointerPos >= bpm) {
     resetPointer()
   }
-  pointer.data([pointerPos])
+  var r = pointer.data([pointerPos])
   .transition()
   .attr('transform', function(d) {
     // dynamic pointer angle
     return `rotate(${tickScale()(d) + 180})`
   })
   pointerPos ++
+  return r
 }
 
 // TODO duplicate pt. 2
