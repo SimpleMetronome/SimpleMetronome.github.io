@@ -83,12 +83,16 @@ function toggleTick() {
   if (localStorage.tickActive == 'true') {
     localStorage.tickActive = false
     updateTick()
-    d3.select('.button-toggle>text').classed('fa-spin', false)
+    d3.select('.button-toggle>text')
+      .text('\uf04b') // play
+      // .classed('fa-spin', false)
   } else {
     localStorage.tickActive = true
     tickSound.play()
     updateTick()
-    d3.select('.button-toggle>text').classed('fa-spin', true)
+    d3.select('.button-toggle>text')
+      .text('\uf04c') // pause
+      // .classed('fa-spin', true)
   }
 }
 
@@ -280,7 +284,7 @@ bottomRight.append('circle')
   .style('stroke-width', windowMin / 150)
 bottomRight.append('text')
   .style('font-size', dialRadius / 5)
-  .text('\uf04c')
+  .text('\uf04b') // play
 
 // button event listeners
 // TODO show button state on button visually
