@@ -28,6 +28,7 @@ body {
   cursor: pointer;
 }
 .button>text {
+  font-family: FontAwesome;
   fill: #eee;
   text-anchor: middle;
   alignment-baseline: central;
