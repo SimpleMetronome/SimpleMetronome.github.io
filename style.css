@@ -24,6 +24,11 @@ body {
   stroke: #000;
   stroke-linecap: round;
 }
+.button {
+  cursor: pointer;
+}
 .button>text {
-  color: #eee;
+  fill: #eee;
+  text-anchor: middle;
+  alignment-baseline: central;
 }
