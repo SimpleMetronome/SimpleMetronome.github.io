@@ -55,8 +55,28 @@ var tickSound = new Howl({
   src: ['tick.mp3']
 })
 
+var muted = false
+
+function toggleMute() {
+  if (!muted) {
+    muted = true
+    d3.select('.button-mute>text')
+      .text('\uf026') // volume-off
+  } else {
+    muted = false
+    d3.select('.button-mute>text')
+      .text('\uf028') // volume-up
+  }
+}
+
+function soundTick() {
+  if (!muted) {
+    tickSound.play()
+  }
+}
+
 function tick() {
-  tickSound.play()
+  soundTick()
   updatePointer()
 }
 
@@ -88,7 +108,7 @@ function toggleTick() {
       // .classed('fa-spin', false)
   } else {
     localStorage.tickActive = true
-    tickSound.play()
+    soundTick()
     updateTick()
     d3.select('.button-toggle>text')
       .text('\uf04c') // pause
@@ -254,7 +274,7 @@ topLeft.append('circle')
   .style('stroke-width', windowMin / 150)
 topLeft.append('text')
   .style('font-size', dialRadius / 5)
-  .text('\uf028')
+  .text('\uf028') // volume-up
 
 var topRight = metronome.append('g')
   .attr('transform', `translate(${window.innerWidth - extraWidth - dialRadius * 0.21}, ${extraHeight + dialRadius * 0.21})`)
@@ -264,7 +284,7 @@ topRight.append('circle')
   .style('stroke-width', windowMin / 150)
 topRight.append('text')
   .style('font-size', dialRadius / 5)
-  .text('\uf128')
+  .text('\uf128') // question
 
 var bottomLeft = metronome.append('g')
   .attr('class', 'button button-detect')
@@ -274,7 +294,7 @@ bottomLeft.append('circle')
   .style('stroke-width', windowMin / 150)
 bottomLeft.append('text')
   .style('font-size', dialRadius / 5)
-  .text('\uf0a6')
+  .text('\uf0a6') // hand-o-up
 
 var bottomRight = metronome.append('g')
   .attr('class', 'button button-toggle')
@@ -289,7 +309,7 @@ bottomRight.append('text')
 // button event listeners
 // TODO show button state on button visually
 
-// d3.select('.button-mute').on('click', toggleMute)
+d3.select('.button-mute').on('click', toggleMute)
 // d3.select('.button-info').on('click', toggleInfo)
 // d3.select('.button-detect').on('click', detectTapped)
 d3.select('.button-toggle').on('click', toggleTick)
