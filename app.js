@@ -187,6 +187,7 @@ setBPM(bpm)
 var touchRatio = 1
 var touchAcceleration = 1
 
+// TODO make this work for mouse dragging too since cursor suggests that now
 var lastTouch
 window.addEventListener('touchstart', function(e) {
   lastTouch = e.touches[0]
