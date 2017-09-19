@@ -26,10 +26,12 @@ body {
 }
 .button {
   cursor: pointer;
+  fill: transparent;
+  stroke: #000;
 }
 .button>text {
   font-family: FontAwesome;
-  fill: #eee;
+  fill: #000;
   text-anchor: middle;
   alignment-baseline: central;
 }
