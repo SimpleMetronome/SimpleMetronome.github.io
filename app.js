@@ -235,3 +235,36 @@ window.addEventListener('keydown', function(e) {
 // sync controls accross multiple windows
 
 window.addEventListener('storage', updateTick)
+
+// buttons
+
+var extraWidth = (window.innerWidth - windowMin) / 2
+var extraHeight = (window.innerHeight - windowMin) / 2
+
+// top left
+metronome.append('circle')
+  .attr('class', 'button-mute')
+  .attr('r', dialRadius * 0.15)
+  .attr('cx', extraWidth + dialRadius * 0.2)
+  .attr('cy', extraHeight + dialRadius * 0.2)
+
+// top right
+metronome.append('circle')
+  .attr('class', 'button-info')
+  .attr('r', dialRadius * 0.15)
+  .attr('cx', window.innerWidth - extraWidth - dialRadius * 0.2)
+  .attr('cy', extraHeight + dialRadius * 0.2)
+
+// bottom left
+metronome.append('circle')
+.attr('class', 'button-detect')
+.attr('r', dialRadius * 0.15)
+.attr('cx', extraWidth + dialRadius * 0.2)
+.attr('cy', window.innerHeight - extraHeight - dialRadius * 0.2)
+
+// bottom right
+metronome.append('circle')
+  .attr('class', 'button-toggle')
+  .attr('r', dialRadius * 0.15)
+  .attr('cx', window.innerWidth - extraWidth - dialRadius * 0.2)
+  .attr('cy', window.innerHeight - extraHeight - dialRadius * 0.2)
