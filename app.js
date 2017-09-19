@@ -183,7 +183,8 @@ setBPM(bpm)
 
 // logarithmic touch scrolling bpm
 
-// TODO better acceleration and slower-than-event-unit scrolling
+// TODO get rid of all this micro tweaking stuff and do 1:1 scrolling
+// plus add up/down arrows
 var touchRatio = 1
 var touchAcceleration = 1
 
@@ -224,9 +225,9 @@ window.addEventListener('wheel', function(e) {
 // keyboard events
 
 window.addEventListener('keydown', function(e) {
-  if (e.key === 'ArrowUp' || e.key === 'ArrowRight') {
+  if (e.key === 'ArrowUp') {
     setBPM(bpm + 1)
-  } else if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') {
+  } else if (e.key === 'ArrowDown') {
     setBPM(bpm - 1)
   } else if (e.key === ' ') {
     toggleTick()
