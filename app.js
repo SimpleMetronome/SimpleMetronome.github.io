@@ -268,3 +268,7 @@ metronome.append('circle')
   .attr('r', dialRadius * 0.15)
   .attr('cx', window.innerWidth - extraWidth - dialRadius * 0.2)
   .attr('cy', window.innerHeight - extraHeight - dialRadius * 0.2)
+
+// button event listeners
+
+d3.select('.button-toggle').on('click', toggleTick)
