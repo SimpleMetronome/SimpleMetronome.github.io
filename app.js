@@ -270,5 +270,9 @@ metronome.append('circle')
   .attr('cy', window.innerHeight - extraHeight - dialRadius * 0.2)
 
 // button event listeners
+// TODO show button state on button visually
 
+// d3.select('.button-mute').on('click', toggleMute)
+// d3.select('.button-info').on('click', toggleInfo)
+// d3.select('.button-detect').on('click', detectTapped)
 d3.select('.button-toggle').on('click', toggleTick)
