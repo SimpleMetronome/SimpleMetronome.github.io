@@ -83,10 +83,12 @@ function toggleTick() {
   if (localStorage.tickActive == 'true') {
     localStorage.tickActive = false
     updateTick()
+    d3.select('.button-toggle>text').classed('fa-spin', false)
   } else {
     localStorage.tickActive = true
     tickSound.play()
     updateTick()
+    d3.select('.button-toggle>text').classed('fa-spin', true)
   }
 }
 
