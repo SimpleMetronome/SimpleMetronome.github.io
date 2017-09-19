@@ -237,34 +237,39 @@ window.addEventListener('keydown', function(e) {
 window.addEventListener('storage', updateTick)
 
 // buttons
+// TODO fill as much space as possible with buttons
 
 var extraWidth = (window.innerWidth - windowMin) / 2
 var extraHeight = (window.innerHeight - windowMin) / 2
 
-// top left
-metronome.append('circle')
-  .attr('class', 'button-mute')
+var topLeft = metronome.append('g')
+topLeft.append('circle')
+  .attr('class', 'button button-mute')
   .attr('r', dialRadius * 0.15)
   .attr('cx', extraWidth + dialRadius * 0.2)
   .attr('cy', extraHeight + dialRadius * 0.2)
 
-// top right
-metronome.append('circle')
-  .attr('class', 'button-info')
+var topRight = metronome.append('g')
+topRight.append('circle')
+  .attr('class', 'button button-info')
   .attr('r', dialRadius * 0.15)
   .attr('cx', window.innerWidth - extraWidth - dialRadius * 0.2)
   .attr('cy', extraHeight + dialRadius * 0.2)
+// topRight.append('text')
+// // .style('font-family', 'FontAwesome')
+// // .style('font-size', '12em')
+// .text('hi')
 
-// bottom left
-metronome.append('circle')
-.attr('class', 'button-detect')
-.attr('r', dialRadius * 0.15)
-.attr('cx', extraWidth + dialRadius * 0.2)
-.attr('cy', window.innerHeight - extraHeight - dialRadius * 0.2)
+var bottomLeft = metronome.append('g')
+bottomLeft.append('circle')
+  .attr('class', 'button button-detect')
+  .attr('r', dialRadius * 0.15)
+  .attr('cx', extraWidth + dialRadius * 0.2)
+  .attr('cy', window.innerHeight - extraHeight - dialRadius * 0.2)
 
-// bottom right
-metronome.append('circle')
-  .attr('class', 'button-toggle')
+var bottomRight = metronome.append('g')
+bottomRight.append('circle')
+  .attr('class', 'button button-toggle')
   .attr('r', dialRadius * 0.15)
   .attr('cx', window.innerWidth - extraWidth - dialRadius * 0.2)
   .attr('cy', window.innerHeight - extraHeight - dialRadius * 0.2)

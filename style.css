@@ -24,3 +24,6 @@ body {
   stroke: #000;
   stroke-linecap: round;
 }
+.button>text {
+  color: #eee;
+}
