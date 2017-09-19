@@ -34,14 +34,22 @@ var face = metronome.append('g')
 
 // remember and initialize bpm with localstorage
 
-// TODO duplicate pt. 1
-var bpm
-if (!localStorage.bpm) {
-  bpm = 120
-  localStorage.bpm = 120
-} else {
-  bpm = localStorage.bpm
+function validateBPM(x) {
+  x = Number(x) // convert to number type
+  if (!Number.isNaN(x)) { // is a number
+    x = Math.round(x) // round to integer
+    if (x < 1) {
+      x = 1 // lower boundry
+    } else if (x > 360) {
+      x = 360 // upper boundry
+    }
+  } else {
+    x = 120 // default
+  }
+  return x
 }
+
+var bpm = localStorage.bpm = validateBPM(localStorage.bpm)
 
 function tickScale() {
   return d3.scaleLinear()
@@ -116,17 +124,8 @@ function toggleTick() {
   }
 }
 
-function setBPM(targetBPM) {
-  // verifier
-  targetBPM = Math.round(targetBPM)
-  if (targetBPM < 1) {
-    bpm = 1
-  } else if (targetBPM > 360) {
-    bpm = 360
-  } else {
-    bpm = targetBPM
-  }
-  localStorage.bpm = bpm
+function setBPM(x) {
+  localStorage.bpm = bpm = validateBPM(x)
 
   updateTick()
   // TODO more subtle scrolling sound?
