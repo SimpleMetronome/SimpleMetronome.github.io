@@ -178,35 +178,31 @@ function updatePointer() {
   pointerPos ++
 }
 
-// TODO duplicate pt. 2
+// initialize
 setBPM(bpm)
 
-// logarithmic touch scrolling bpm
+// TODO up/down arrow button
 
-// TODO get rid of all this micro tweaking stuff and do 1:1 scrolling
-// plus add up/down arrows
-var touchRatio = 1
-var touchAcceleration = 1
-
-// TODO make this work for mouse dragging too since cursor suggests that now
-var lastTouch
+var lastScrollPos
 window.addEventListener('touchstart', function(e) {
-  lastTouch = e.touches[0]
+  lastScrollPos = e.touches[0].clientY
 })
 window.addEventListener('touchmove', function(e) {
-  var touch = e.touches[0]
-  var delta = (lastTouch.clientY - touch.clientY)
-  if (delta !== 0) {
-    delta = delta / touchRatio
-    var sign = Math.sign(delta)
-    var difference = sign * Math.pow(Math.abs(delta), touchAcceleration)
-    if (sign === +1) {
-      difference = Math.ceil(difference)
-    } else if (sign === -1) {
-      difference = Math.floor(difference)
-    }
+  var scrollPos = e.touches[0].clientY
+  var difference = lastScrollPos - scrollPos
+  setBPM(bpm + difference)
+  lastScrollPos = scrollPos
+})
+
+window.addEventListener('mousedown', function(e) {
+  lastScrollPos = e.clientY
+})
+window.addEventListener('mousemove', function(e) {
+  if (e.buttons === 1) { // left click is held down
+    var scrollPos = e.clientY
+    var difference = lastScrollPos - scrollPos
     setBPM(bpm + difference)
-    lastTouch = touch
+    lastScrollPos = scrollPos
   }
 })
 
