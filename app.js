@@ -209,6 +209,8 @@ setBPM(bpm)
 
 // TODO up/down arrow button
 
+// TODO ignore scroll if not on dial?
+
 var lastScrollPos
 window.addEventListener('touchstart', function(e) {
   lastScrollPos = e.touches[0].clientY
@@ -253,6 +255,8 @@ window.addEventListener('keydown', function(e) {
     setBPM(bpm - 1)
   } else if (e.key === ' ') {
     toggleTick()
+  } else if (e.key === 'm') {
+    toggleMute()
   }
 })
 
