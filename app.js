@@ -77,6 +77,9 @@ localStorage.tickActive = false
 var tickID
 function updateTick() {
   if (localStorage.tickActive == 'true') {
+    d3.select('.button-toggle>text')
+    .text('\uf04c') // pause
+    // .classed('fa-spin', true)
     clearInterval(tickID)
     resetPointer()
     updatePointer()
@@ -85,6 +88,9 @@ function updateTick() {
     setTimeout(updatePointer, 50)
     tickID = setInterval(tick, 60 / bpm * 1000)
   } else {
+    d3.select('.button-toggle>text')
+      .text('\uf04b') // play
+      // .classed('fa-spin', false)
     clearInterval(tickID)
     resetPointer()
     updatePointer()
@@ -95,16 +101,12 @@ function toggleTick() {
   if (localStorage.tickActive == 'true') {
     localStorage.tickActive = false
     updateTick()
-    d3.select('.button-toggle>text')
-      .text('\uf04b') // play
-      // .classed('fa-spin', false)
+
   } else {
     localStorage.tickActive = true
     soundTick()
     updateTick()
-    d3.select('.button-toggle>text')
-      .text('\uf04c') // pause
-      // .classed('fa-spin', true)
+
   }
 }
 
