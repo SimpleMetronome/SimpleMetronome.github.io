@@ -243,6 +243,8 @@ window.addEventListener('keydown', function(e) {
     setBPM(bpm - 1)
   } else if (e.key === ' ') {
     toggleTick()
+  } else if (e.key === 'Escape') {
+    closeInfo()
   }
 })
 
