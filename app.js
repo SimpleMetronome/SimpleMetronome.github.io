@@ -63,24 +63,8 @@ var tickSound = new Howl({
   src: ['tick.mp3']
 })
 
-var muted = false
-
-function toggleMute() {
-  if (!muted) {
-    muted = true
-    d3.select('.button-mute>text')
-      .text('\uf026') // volume-off
-  } else {
-    muted = false
-    d3.select('.button-mute>text')
-      .text('\uf028') // volume-up
-  }
-}
-
 function soundTick() {
-  if (!muted) {
-    tickSound.play()
-  }
+  tickSound.play()
 }
 
 function tick() {
@@ -254,8 +238,6 @@ window.addEventListener('keydown', function(e) {
     setBPM(bpm - 1)
   } else if (e.key === ' ') {
     toggleTick()
-  } else if (e.key === 'm') {
-    toggleMute()
   }
 })
 
@@ -268,16 +250,6 @@ window.addEventListener('storage', updateTick)
 
 var extraWidth = (window.innerWidth - windowMin) / 2
 var extraHeight = (window.innerHeight - windowMin) / 2
-
-var topLeft = metronome.append('g')
-  .attr('class', 'button button-mute')
-  .attr('transform', `translate(${extraWidth + dialRadius * 0.21}, ${extraHeight + dialRadius * 0.21})`)
-topLeft.append('circle')
-  .attr('r', dialRadius * 0.2)
-  .style('stroke-width', windowMin / 150)
-topLeft.append('text')
-  .style('font-size', dialRadius / 5)
-  .text('\uf028') // volume-up
 
 var topRight = metronome.append('g')
   .attr('transform', `translate(${window.innerWidth - extraWidth - dialRadius * 0.21}, ${extraHeight + dialRadius * 0.21})`)
@@ -312,7 +284,6 @@ bottomRight.append('text')
 // button event listeners
 // TODO show button state on button visually
 
-d3.select('.button-mute').on('click', toggleMute)
 // d3.select('.button-info').on('click', toggleInfo)
 // d3.select('.button-detect').on('click', detectTapped)
 d3.select('.button-toggle').on('click', toggleTick)
