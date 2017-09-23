@@ -86,6 +86,7 @@ function updateTick() {
     pointerPos = bpm - 1
     updatePointer()
     setTimeout(updatePointer, 50)
+    // BPM to MS
     tickID = setInterval(tick, 60 / bpm * 1000)
   } else {
     d3.select('.button-toggle>text')
@@ -286,6 +287,26 @@ bottomRight.append('text')
 // button event listeners
 // TODO show button state on button visually
 
-// d3.select('.button-info').on('click', toggleInfo)
-// d3.select('.button-detect').on('click', detectTapped)
+function openInfo() {
+
+}
+
+function closeInfo() {
+
+}
+
+var bpmTaps = []
+function detectBPM() {
+  // log tap as timestamp
+  bpmTaps.push(Math.floor(Date.now()))
+  // take average of time between last three taps and convert to BPM
+  if (bpmTaps.length >= 3) {
+    // MS diff to BPM
+    var msDiff = (bpmTaps[bpmTaps.length - 1] - bpmTaps[bpmTaps.length - 3]) / 2
+    setBPM(1000 / msDiff * 60)
+  }
+}
+
+d3.select('.button-info').on('click', openInfo)
+d3.select('.button-detect').on('click', detectBPM)
 d3.select('.button-toggle').on('click', toggleTick)
