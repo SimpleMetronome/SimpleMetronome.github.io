@@ -14,7 +14,9 @@ metronome.attr('width', window.innerWidth)
   .style('left', 0)
 
 window.addEventListener('touchmove', function(e) {
-  e.preventDefault()
+  if (e.target.classList.contains('metronome')) {
+    e.preventDefault()
+  }
 })
 
 // refresh the whole page when window resizes
@@ -198,20 +200,20 @@ setBPM(bpm)
 // TODO ignore scroll if not on dial?
 
 var lastScrollPos
-window.addEventListener('touchstart', function(e) {
+document.querySelector('.metronome').addEventListener('touchstart', function(e) {
   lastScrollPos = e.touches[0].clientY
 })
-window.addEventListener('touchmove', function(e) {
+document.querySelector('.metronome').addEventListener('touchmove', function(e) {
   var scrollPos = e.touches[0].clientY
   var difference = lastScrollPos - scrollPos
   setBPM(bpm + difference)
   lastScrollPos = scrollPos
 })
 
-window.addEventListener('mousedown', function(e) {
+document.querySelector('.metronome').addEventListener('mousedown', function(e) {
   lastScrollPos = e.clientY
 })
-window.addEventListener('mousemove', function(e) {
+document.querySelector('.metronome').addEventListener('mousemove', function(e) {
   if (e.buttons === 1) { // left click is held down
     var scrollPos = e.clientY
     var difference = lastScrollPos - scrollPos
