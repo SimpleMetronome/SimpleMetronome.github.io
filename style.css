@@ -1,60 +1,85 @@
-
 body {
-  background-color: #64ceaa;
-  color: white;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
   font-family: sans-serif;
+  background: #eee;
 }
-
-kbd {
-  border: 1px solid white;
-  margin: 2px;
-  padding: 2px;
+.info {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #eee;
+  padding: 1rem;
 }
-
-.header, .app, .footer, #bpm {
+.info .border {
+	box-shadow: inset 0 0 0 0.25rem #000;
+  font-size: 1.5rem;
+  height: 100%;
+  max-width: 100vh;
+  margin: auto;
+}
+.info .content {
+  margin: 0;
+  padding: 1rem;
+  height: calc(100% - 5.5rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.info h1 {
+  margin: 0;
+}
+.info a {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 0.1rem solid #000;
+}
+.close-info {
+  background: #000;
+  color: #eee;
   text-align: center;
+  padding: 1rem 0;
+  bottom: 1rem;
+  cursor: pointer;
 }
-
-.header {
-  margin-top: 4em;
+.metronome {
+  position: fixed;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+   -khtml-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: ns-resize;
 }
-
-.output {
-  margin-top: 1.6em;
-  margin-bottom: .8em;
+.tick {
+  stroke: #000;
 }
-
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Chrome/Safari/Opera */
-  -khtml-user-select: none; /* Konqueror */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE/Edge */
-  user-select: none; /* non-prefixed version, currently not supported by any browser */
+.bpm-circle {
+  fill: #000;
 }
-
-#bpm {
-  font-size: 1em;
-  font-weight: bold;
-  margin: .3em;
-  padding: 1.5em;
-  width: 5.25em;
+.bpm-text {
+  fill: #eee;
+  text-anchor: middle;
+  font-family: monospace;
+  alignment-baseline: central;
 }
-
-#toggle {
-  background-color: white;
-  font-size: 1em;
-  font-weight: bold;
-  margin: .3em;
-  padding: 1.5em;
+.pointer {
+  stroke: #000;
+  stroke-linecap: round;
 }
-
-#flash {
-  fill: white;
-  text-
+.button {
+  cursor: pointer;
+  fill: transparent;
+  stroke: #000;
 }
-
-#flash.active {
-  /* animate this (possibly only slide scale smaller on resetting, so downbeat is exact) */
-  transform: scale(1.1);
+.button>text {
+  font-family: FontAwesome;
+  fill: #000;
+  text-anchor: middle;
+  alignment-baseline: central;
 }
