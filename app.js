@@ -308,5 +308,6 @@ function detectBPM() {
 }
 
 d3.select('.button-info').on('click', openInfo)
+d3.select('.close-info').on('click', closeInfo)
 d3.select('.button-detect').on('click', detectBPM)
 d3.select('.button-toggle').on('click', toggleTick)
