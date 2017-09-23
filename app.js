@@ -288,11 +288,11 @@ bottomRight.append('text')
 // TODO show button state on button visually
 
 function openInfo() {
-
+  document.querySelector('.info').removeAttribute('hidden')
 }
 
 function closeInfo() {
-
+  document.querySelector('.info').setAttribute('hidden', '')
 }
 
 var bpmTaps = []
