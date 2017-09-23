@@ -28,7 +28,7 @@ a {
 .info .content {
   margin: 0;
   padding: 1rem;
-  height: calc(100% - 4.5rem);
+  height: calc(100% - 5.5rem);
 }
 .info h1 {
   margin: 0;
@@ -37,7 +37,7 @@ a {
   background: #000;
   color: #eee;
   text-align: center;
-  padding: 0.5rem;
+  padding: 1rem 0;
   bottom: 1rem;
   cursor: pointer;
 }
