@@ -1,6 +1,5 @@
 {
-  "name": "Simple Metronome",
-  "short_name": "Metronome",
+  "name": "Metronome",
   "icons": [
     {
       "src": "icon.png",
