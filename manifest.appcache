@@ -18,7 +18,7 @@ lib/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2
 lib/font-awesome-4.7.0/fonts/FontAwesome.otf
 upup.min.js
 upup.sw.min.js
-manifest.appcache
+manifest.json
 icon.png
 
 NETWORK:
