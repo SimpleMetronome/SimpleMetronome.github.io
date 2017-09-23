@@ -1,0 +1,25 @@
+CACHE MANIFEST
+# cache-version: 1506208308172
+# browser will use service worker automatically instead if supported
+
+CACHE:
+index.html
+app.js
+style.css
+tick.mp3
+lib/d3.v4.min.js
+lib/howler.core.min.js
+lib/font-awesome-4.7.0/css/font-awesome.min.css
+lib/font-awesome-4.7.0/fonts/fontawesome-webfont.eot
+lib/font-awesome-4.7.0/fonts/fontawesome-webfont.svg
+lib/font-awesome-4.7.0/fonts/fontawesome-webfont.ttf
+lib/font-awesome-4.7.0/fonts/fontawesome-webfont.woff
+lib/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2
+lib/font-awesome-4.7.0/fonts/FontAwesome.otf
+upup.min.js
+upup.sw.min.js
+manifest.appcache
+icon.png
+
+NETWORK:
+*

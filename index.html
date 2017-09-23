@@ -2,8 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="icon.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="icon.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
   <title>Simple Metronome</title>
   <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
@@ -41,7 +49,7 @@
   <script src="upup.min.js"></script>
   <script>
     UpUp.start({
-      'cache-version': '1506202828893',
+      'cache-version': '1506208308172',
       'content-url': 'index.html',
       'assets': [
         'index.html',
@@ -56,9 +64,13 @@
         'lib/font-awesome-4.7.0/fonts/fontawesome-webfont.ttf',
         'lib/font-awesome-4.7.0/fonts/fontawesome-webfont.woff',
         'lib/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2',
-        'lib/font-awesome-4.7.0/fonts/FontAwesome.otf'
+        'lib/font-awesome-4.7.0/fonts/FontAwesome.otf',
+        'upup.min.js',
+        'upup.sw.min.js',
+        'manifest.appcache',
+        'icon.png'
       ]
-    });
+    })
   </script>
 </body>
 </html>
