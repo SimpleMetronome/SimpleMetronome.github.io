@@ -336,8 +336,14 @@ function detectBPM() {
   }
 }
 
-d3.select('.button-info').on('click', openInfo)
-d3.select('.close-info').on('click', closeInfo)
+d3.select('.button-info').on('mousedown', openInfo)
+d3.select('.button-info').on('touchstart', openInfo)
+
+d3.select('.close-info').on('mousedown', closeInfo)
+d3.select('.close-info').on('touchstart', closeInfo)
+
 d3.select('.button-detect').on('mousedown', detectBPM)
 d3.select('.button-detect').on('touchstart', detectBPM)
-d3.select('.button-toggle').on('click', toggleTick)
+
+d3.select('.button-toggle').on('mousedown', toggleTick)
+d3.select('.button-toggle').on('touchstart', toggleTick)
