@@ -330,6 +330,12 @@ function detectBPM() {
   }
 }
 
+window.addEventListener('touchmove', function(e) {
+  if (document.querySelector('.metronome').contains(e.target)) {
+    e.preventDefault()
+  }
+})
+
 window.addEventListener('mousedown', function(e) {
   e.preventDefault()
 })
