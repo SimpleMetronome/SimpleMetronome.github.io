@@ -238,25 +238,31 @@ document.querySelector('.metronome').addEventListener('mousemove', function(e) {
   }
 })
 
+function incrementBPM() {
+  setBPM(bpm + 1)
+}
+function decrementBPM() {
+  setBPM(bpm - 1)
+}
+
 // mouse wheel scrolling bpm
 
 window.addEventListener('wheel', function(e) {
   var difference
   if (e.deltaY > 0) {
-    difference = -1
+    decrementBPM()
   } else {
-    difference = 1
+    incrementBPM()
   }
-  setBPM(bpm + difference)
 })
 
 // keyboard events
 
 window.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowUp') {
-    setBPM(bpm + 1)
+    incrementBPM()
   } else if (e.key === 'ArrowDown') {
-    setBPM(bpm - 1)
+    decrementBPM()
   } else if (e.key === ' ') {
     toggleTick()
   } else if (e.key === 'Escape') {
@@ -273,6 +279,23 @@ window.addEventListener('storage', updateTick)
 
 var extraWidth = (window.innerWidth - windowMin) / 2
 var extraHeight = (window.innerHeight - windowMin) / 2
+
+var arrowMultiplier = windowMin * 0.08
+var topMiddle = metronome.append('g')
+  .attr('transform', `translate(${window.innerWidth / 2}, ${extraHeight + dialRadius * 0.18})`)
+  .attr('class', 'button button-increment')
+topMiddle.append('polyline')
+  .attr('points', `${-3 * arrowMultiplier},0 0,${-1 * arrowMultiplier} ${3 * arrowMultiplier},0`)
+  .style('stroke-width', windowMin / 150)
+  .attr('class', 'no-scrub')
+
+var bottomMiddle = metronome.append('g')
+  .attr('transform', `translate(${window.innerWidth / 2}, ${window.innerHeight - extraHeight - dialRadius * 0.18})`)
+  .attr('class', 'button button-decrement')
+bottomMiddle.append('polyline')
+  .attr('points', `${-3 * arrowMultiplier},0 0,${1 * arrowMultiplier} ${3 * arrowMultiplier},0`)
+  .style('stroke-width', windowMin / 150)
+  .attr('class', 'no-scrub')
 
 var topRight = metronome.append('g')
   .attr('transform', `translate(${window.innerWidth - extraWidth - dialRadius * 0.21}, ${extraHeight + dialRadius * 0.21})`)
@@ -337,6 +360,17 @@ window.addEventListener('touchmove', function(e) {
 })
 
 window.addEventListener('mousedown', function(e) {
+  e.preventDefault()
+})
+
+document.querySelector('.button-increment').addEventListener('mousedown', incrementBPM)
+document.querySelector('.button-increment').addEventListener('touchstart', incrementBPM)
+document.querySelector('.button-increment').addEventListener('touchstart', function(e) {
+  e.preventDefault()
+})
+document.querySelector('.button-decrement').addEventListener('mousedown', decrementBPM)
+document.querySelector('.button-decrement').addEventListener('touchstart', decrementBPM)
+document.querySelector('.button-decrement').addEventListener('touchstart', function(e) {
   e.preventDefault()
 })
 
