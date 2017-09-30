@@ -197,28 +197,50 @@ setBPM(bpm)
 
 // TODO up/down arrow button
 
-// TODO ignore scroll if not on dial?
+// ignore scroll if on a button
+function scrubbable(e) {
+  if (!e.target.classList.contains('no-scrub')) {
+    return true
+  } else {
+    return false
+  }
+}
+var startedOnScrubbableElement
 
 var lastScrollPos
 document.querySelector('.metronome').addEventListener('touchstart', function(e) {
-  lastScrollPos = e.touches[0].clientY
+  if (scrubbable(e)) {
+    lastScrollPos = e.touches[0].clientY
+    startedOnScrubbableElement = true
+  } else {
+    startedOnScrubbableElement = false
+  }
 })
 document.querySelector('.metronome').addEventListener('touchmove', function(e) {
-  var scrollPos = e.touches[0].clientY
-  var difference = lastScrollPos - scrollPos
-  setBPM(bpm + difference)
-  lastScrollPos = scrollPos
-})
-
-document.querySelector('.metronome').addEventListener('mousedown', function(e) {
-  lastScrollPos = e.clientY
-})
-document.querySelector('.metronome').addEventListener('mousemove', function(e) {
-  if (e.buttons === 1) { // left click is held down
-    var scrollPos = e.clientY
+  if (startedOnScrubbableElement) {
+    var scrollPos = e.touches[0].clientY
     var difference = lastScrollPos - scrollPos
     setBPM(bpm + difference)
     lastScrollPos = scrollPos
+  }
+})
+
+document.querySelector('.metronome').addEventListener('mousedown', function(e) {
+  if (scrubbable(e)) {
+    lastScrollPos = e.clientY
+    startedOnScrubbableElement = true
+  } else {
+    startedOnScrubbableElement = false
+  }
+})
+document.querySelector('.metronome').addEventListener('mousemove', function(e) {
+  if (startedOnScrubbableElement) {
+    if (e.buttons === 1) { // left click is held down
+      var scrollPos = e.clientY
+      var difference = lastScrollPos - scrollPos
+      setBPM(bpm + difference)
+      lastScrollPos = scrollPos
+    }
   }
 })
 
@@ -261,32 +283,35 @@ var extraHeight = (window.innerHeight - windowMin) / 2
 var topRight = metronome.append('g')
   .attr('transform', `translate(${window.innerWidth - extraWidth - dialRadius * 0.21}, ${extraHeight + dialRadius * 0.21})`)
   .attr('class', 'button button-info')
-topRight.append('circle')
-  .attr('r', dialRadius * 0.15)
-  .style('stroke-width', windowMin / 150)
 topRight.append('text')
   .style('font-size', dialRadius / 5)
   .text('\uf128') // question
+topRight.append('circle')
+  .attr('r', dialRadius * 0.15)
+  .style('stroke-width', windowMin / 150)
+  .attr('class', 'no-scrub')
 
 var bottomLeft = metronome.append('g')
   .attr('class', 'button button-detect')
   .attr('transform', `translate(${extraWidth + dialRadius * 0.21}, ${window.innerHeight - extraHeight - dialRadius * 0.21})`)
-bottomLeft.append('circle')
-  .attr('r', dialRadius * 0.2)
-  .style('stroke-width', windowMin / 150)
 bottomLeft.append('text')
   .style('font-size', dialRadius / 5)
   .text('\uf0a6') // hand-o-up
+bottomLeft.append('circle')
+  .attr('r', dialRadius * 0.2)
+  .style('stroke-width', windowMin / 150)
+  .attr('class', 'no-scrub')
 
 var bottomRight = metronome.append('g')
   .attr('class', 'button button-toggle')
   .attr('transform', `translate(${window.innerWidth - extraWidth - dialRadius * 0.21}, ${window.innerHeight - extraHeight - dialRadius * 0.21})`)
-bottomRight.append('circle')
-  .attr('r', dialRadius * 0.2)
-  .style('stroke-width', windowMin / 150)
 bottomRight.append('text')
   .style('font-size', dialRadius / 5)
   .text('\uf04b') // play
+bottomRight.append('circle')
+  .attr('r', dialRadius * 0.2)
+  .style('stroke-width', windowMin / 150)
+  .attr('class', 'no-scrub')
 
 // button event listeners
 // TODO show button state on button visually
