@@ -13,12 +13,6 @@ metronome.attr('width', window.innerWidth)
   .style('top', 0)
   .style('left', 0)
 
-window.addEventListener('touchmove', function(e) {
-  if (e.target.classList.contains('metronome')) {
-    e.preventDefault()
-  }
-})
-
 // refresh the whole page when window resizes
 
 // TODO dynamically resize without having to refresh page
@@ -336,38 +330,26 @@ function detectBPM() {
   }
 }
 
+window.addEventListener('mousedown', function(e) {
+  e.preventDefault()
+})
+
+document.querySelector('.button-info').addEventListener('mousedown', openInfo)
+document.querySelector('.button-info').addEventListener('touchstart', openInfo)
 document.querySelector('.button-info').addEventListener('touchstart', function(e) {
   e.preventDefault()
-  openInfo(e)
-})
-document.querySelector('.button-info').addEventListener('mousedown', function(e) {
-  e.preventDefault()
-  openInfo(e)
 })
 
-document.querySelector('.close-info').addEventListener('touchstart', function(e) {
-  e.preventDefault()
-  closeInfo(e)
-})
-document.querySelector('.close-info').addEventListener('mousedown', function(e) {
-  e.preventDefault()
-  closeInfo(e)
-})
+document.querySelector('.close-info').addEventListener('click', closeInfo)
 
+document.querySelector('.button-detect').addEventListener('touchstart', detectBPM)
+document.querySelector('.button-detect').addEventListener('mousedown', detectBPM)
 document.querySelector('.button-detect').addEventListener('touchstart', function(e) {
   e.preventDefault()
-  detectBPM(e)
-})
-document.querySelector('.button-detect').addEventListener('mousedown', function(e) {
-  e.preventDefault()
-  detectBPM(e)
 })
 
+document.querySelector('.button-toggle').addEventListener('touchstart', toggleTick)
+document.querySelector('.button-toggle').addEventListener('mousedown', toggleTick)
 document.querySelector('.button-toggle').addEventListener('touchstart', function(e) {
   e.preventDefault()
-  toggleTick(e)
-})
-document.querySelector('.button-toggle').addEventListener('mousedown', function(e) {
-  e.preventDefault()
-  toggleTick(e)
 })
