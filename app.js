@@ -336,14 +336,38 @@ function detectBPM() {
   }
 }
 
-d3.select('.button-info').on('mousedown', openInfo)
-d3.select('.button-info').on('touchstart', openInfo)
+document.querySelector('.button-info').addEventListener('touchstart', function(e) {
+  e.preventDefault()
+  openInfo(e)
+})
+document.querySelector('.button-info').addEventListener('mousedown', function(e) {
+  e.preventDefault()
+  openInfo(e)
+})
 
-d3.select('.close-info').on('mousedown', closeInfo)
-d3.select('.close-info').on('touchstart', closeInfo)
+document.querySelector('.close-info').addEventListener('touchstart', function(e) {
+  e.preventDefault()
+  closeInfo(e)
+})
+document.querySelector('.close-info').addEventListener('mousedown', function(e) {
+  e.preventDefault()
+  closeInfo(e)
+})
 
-d3.select('.button-detect').on('mousedown', detectBPM)
-d3.select('.button-detect').on('touchstart', detectBPM)
+document.querySelector('.button-detect').addEventListener('touchstart', function(e) {
+  e.preventDefault()
+  detectBPM(e)
+})
+document.querySelector('.button-detect').addEventListener('mousedown', function(e) {
+  e.preventDefault()
+  detectBPM(e)
+})
 
-d3.select('.button-toggle').on('mousedown', toggleTick)
-d3.select('.button-toggle').on('touchstart', toggleTick)
+document.querySelector('.button-toggle').addEventListener('touchstart', function(e) {
+  e.preventDefault()
+  toggleTick(e)
+})
+document.querySelector('.button-toggle').addEventListener('mousedown', function(e) {
+  e.preventDefault()
+  toggleTick(e)
+})
