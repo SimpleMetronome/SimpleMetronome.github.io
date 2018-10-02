@@ -1,4 +1,4 @@
 # [Simple Metronome](https://simplemetronome.github.io)
-An open-source metronome that just works.
+A clock-style metronome to visualize BPM
 
 - Made by [Jonathan Herman](https://jonthesquirrel.github.io)
